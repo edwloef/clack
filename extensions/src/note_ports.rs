@@ -32,6 +32,15 @@ bitflags! {
     }
 }
 
+impl NotePortRescanFlags {
+    /// Returns `true` if any of the given flags that are set imply that a plugin instance's restart
+    /// is needed before note ports can be rescanned.
+    #[inline]
+    pub const fn requires_restart(&self) -> bool {
+        self.contains(Self::ALL)
+    }
+}
+
 bitflags! {
     /// A set of [`NoteDialect`]s.
     #[repr(C)]
